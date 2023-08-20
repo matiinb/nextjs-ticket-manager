@@ -17,7 +17,7 @@ import { Button } from "@/components/ui/button";
 import { PersonIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 
-export default function HeaderUser({ email }: { email: string }) {
+export default function HeaderUser({ username, email }: { username: string, email: string }) {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -32,7 +32,9 @@ export default function HeaderUser({ email }: { email: string }) {
             <DropdownMenuContent className="w-56" align="end" forceMount>
                 <DropdownMenuLabel className="font-normal">
                     <div className="flex flex-col space-y-1">
-                        <p className="text-sm font-medium leading-none">Account</p>
+                        <p className="text-sm font-medium leading-none">
+                            {username}
+                        </p>
                         <p className="text-xs leading-none text-muted-foreground">
                             {email}
                         </p>

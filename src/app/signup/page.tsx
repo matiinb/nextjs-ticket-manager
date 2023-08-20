@@ -6,11 +6,8 @@ import AuthUser from "@/app/auth/auth-user"
 import { redirect } from "next/navigation"
 
 export default async function Signup() {
-    const {
-        data: { user },
-    } = await AuthUser()
-
-    user && redirect('/dashboard')
+    const { userData } = await AuthUser()
+    userData && redirect('/dashboard')
 
     return (
         <>

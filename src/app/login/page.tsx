@@ -6,11 +6,8 @@ import { redirect } from "next/navigation"
 import LoginForm from "@/app/login/login-form";
 
 export default async function Login() {
-    const {
-        data: { user },
-    } = await AuthUser()
-
-    user && redirect('/dashboard')
+    const { userData } = await AuthUser()
+    userData && redirect('/dashboard')
 
     return (
         <>

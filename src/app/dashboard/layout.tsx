@@ -15,15 +15,12 @@ export default async function DashboardLayout({
     children: React.ReactNode
 }) {
 
-    const {
-        data: { user },
-    } = await AuthUser()
-
-    !user && redirect('/login')
+    const { userData } = await AuthUser()
+    !userData && redirect('/login')
 
     return (
         <>
-            <Header email={user!.email!}/>
+            <Header username={userData!.username} email={userData!.email}/>
             {children}
         </>
     )
