@@ -13,8 +13,6 @@ export async function POST(request: Request) {
   const username = String(formData.get('username'))
   const password = String(formData.get('password'))
   const passwordConf = String(formData.get('passwordConf'))
-  const supabase = createRouteHandlerClient({ cookies })
-
   const validation = ValidateSignup({email, username, password, passwordConf})
 
   if (validation != '') {
@@ -26,6 +24,8 @@ export async function POST(request: Request) {
         }
     )
   }
+
+  const supabase = createRouteHandlerClient({ cookies })
 
   const { error } = await supabase.auth.signUp({
     email,

@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import SignupForm from "@/app/signup/signup-form";
 import { EnvelopeClosedIcon } from "@radix-ui/react-icons";
 import AuthUser from "@/app/auth/auth-user"
 import { redirect } from "next/navigation"
+import LoginForm from "@/app/login/login-form";
 
-export default async function Signup() {
+export default async function Login() {
     const {
         data: { user },
     } = await AuthUser()
@@ -30,11 +30,11 @@ export default async function Signup() {
 
                     <div className="mx-auto flex w-full flex-col justify-center align-middle space-y-6 sm:w-[350px]">
                         <div className="space-y-2 text-center">
-                            <h1 className="text-2xl font-semibold tracking-tight">Create an account</h1>
+                            <h1 className="text-2xl font-semibold tracking-tight">Login To Application</h1>
                             <p className="text-sm text-muted-foreground">Enter the email and password below</p>
                         </div>
 
-                        <SignupForm/>
+                        <LoginForm/>
 
                         <div className="relative">
                             <div className="absolute inset-0 flex items-center">
@@ -47,10 +47,10 @@ export default async function Signup() {
                             </div>
                         </div>
 
-                        <Link href={"/login"}>
+                        <Link href={"/signup"}>
                             <Button variant="outline" className="w-full">
                                 <EnvelopeClosedIcon className="mr-2 h-4 w-4" />
-                                Login with Email
+                                Create a new account
                             </Button>
                         </Link>
                     </div>
