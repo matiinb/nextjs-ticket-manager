@@ -28,6 +28,7 @@ model Ticket {
   recipient   User     @relation("ReceivedTickets", fields: [recipientId], references: [id], onDelete: Cascade)
   recipientId String
   title       String
+  isClosed    Boolean  @default(false)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   replies     Reply[]
