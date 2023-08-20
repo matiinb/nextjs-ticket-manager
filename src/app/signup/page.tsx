@@ -11,7 +11,7 @@ export default async function Signup() {
 
     return (
         <>
-            <div className="container relative flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0 h-full">
+            <div className="container relative flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0 h-auto min-h-full pb-8 lg:pb-0">
                 <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
                     <div className="absolute inset-0 auth-bg"></div>
                 </div>

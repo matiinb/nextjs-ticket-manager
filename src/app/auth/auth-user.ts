@@ -8,7 +8,7 @@ export default async function AuthUser() {
     let userData
 
     if (user) {
-        userData = await prisma.user.findUniqueOrThrow({
+        userData = await prisma.user.findUnique({
             where: {
                 email: user?.email
             }
