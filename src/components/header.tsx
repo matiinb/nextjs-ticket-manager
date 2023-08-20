@@ -3,6 +3,7 @@
 import HeaderMenu from "@/components/header-menu";
 import MobileMenu from "@/components/header-mobile-menu";
 import HeaderUser from "@/components/header-user";
+import Searchbar from "@/components/header-searchbar";
 
 export default function Header({ username, email }: { username: string, email: string }) {
     return (
@@ -17,7 +18,8 @@ export default function Header({ username, email }: { username: string, email: s
                     </div>
                 </div>
 
-                <div className="ml-auto flex items-center space-x-4">
+                <div className="ml-auto flex items-center space-x-4 pl-4">
+                    <Searchbar/>
                     <HeaderUser username={username} email={email}/>
                 </div>
             </div>

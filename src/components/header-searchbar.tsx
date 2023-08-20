@@ -1,0 +1,28 @@
+'use client'
+
+import { Input } from "@/components/ui/input"
+import { useState, useRef, useEffect } from "react";
+import { useRouter } from 'next/navigation';
+
+export default function Searchbar() {
+    const searchRef = useRef<HTMLInputElement>(null)
+    const { push } = useRouter()
+    const [isLoading, setIsLoading] = useState(false)
+
+    useEffect(() => {
+        const listener = (ev: KeyboardEvent) => {
+            if (ev.key == 'Enter') {
+                const searchText = searchRef.current!.value
+                if (!searchText) return
+
+                setIsLoading(true)
+                return push(`/users/${searchText}`)
+            }
+        }
+        searchRef.current!.addEventListener('keydown', listener)
+    }, [])
+
+    return (
+        <Input ref={searchRef} disabled={isLoading} placeholder="Enter a username"/>
+    )
+}
