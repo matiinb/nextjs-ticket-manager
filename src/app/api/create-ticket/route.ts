@@ -14,7 +14,7 @@ export async function POST(request: Request) {
 
     if (title.length < 5 || text.length < 10 || destUsername == '') {
         return NextResponse.redirect(
-            `${requestUrl.origin}/${destUsername}/new?error=Invalid input values`,
+            `${requestUrl.origin}/users/${destUsername}/create-ticket?error=Invalid input values`,
             { status: 301 }
         )
     }
@@ -45,12 +45,12 @@ export async function POST(request: Request) {
         })
 
         return NextResponse.redirect(
-            `${requestUrl.origin}/${destUsername}/new?status=success`,
+            `${requestUrl.origin}/users/${destUsername}/create-ticket?status=success`,
             { status: 301 }
         )
     } catch (error) {
         return NextResponse.redirect(
-            `${requestUrl.origin}/${destUsername}/new?error=${error}`,
+            `${requestUrl.origin}/users/${destUsername}/create-ticket?error=${error}`,
             { status: 301 }
         )
     }

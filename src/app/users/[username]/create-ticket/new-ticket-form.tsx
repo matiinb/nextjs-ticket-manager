@@ -3,7 +3,7 @@
 import {SyntheticEvent, useEffect, useRef, useState} from "react";
 import {useSearchParams} from "next/navigation";
 import AlertMessage from "@/components/alert-message";
-import {ExclamationTriangleIcon, FaceIcon} from "@radix-ui/react-icons";
+import {CheckCircledIcon, ExclamationTriangleIcon} from "@radix-ui/react-icons";
 import {Input} from "@/components/ui/input";
 import {Textarea} from "@/components/ui/textarea";
 import {Button} from "@/components/ui/button";
@@ -42,7 +42,7 @@ export function ProfileForm({ destUsername }: { destUsername: string }) {
             )}
             {message && (
                 <AlertMessage
-                    icon={<FaceIcon className="w-10 h-10" />}
+                    icon={<CheckCircledIcon className="w-10 h-10" />}
                     title="Success" message={message}/>
             )}
 
