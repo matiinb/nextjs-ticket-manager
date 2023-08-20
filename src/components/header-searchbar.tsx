@@ -12,7 +12,7 @@ export default function Searchbar() {
     useEffect(() => {
         const listener = (ev: KeyboardEvent) => {
             if (ev.key == 'Enter') {
-                const searchText = searchRef.current!.value
+                const searchText = searchRef.current!.value.replace(/[^A-Z0-9]/ig, "");
                 if (!searchText) return
 
                 setIsLoading(true)
