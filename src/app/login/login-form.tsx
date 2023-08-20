@@ -74,7 +74,7 @@ export default function LoginForm() {
                             />
                         </div>
 
-                        <Button className="mt-2">
+                        <Button className="mt-2" disabled={isLoading}>
                             { isLoading ? <UpdateIcon className="mr-2 h-4 w-4 animate-spin" /> : <PersonIcon className="mr-2 h-4 w-4" /> }
                             Sign In
                         </Button>
