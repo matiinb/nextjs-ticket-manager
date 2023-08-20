@@ -37,16 +37,18 @@ export async function POST(request: Request) {
 
   var dbError
 
-  try {
-    await prisma.user.create({
-      data: {
-        email: email,
-        username: username,
-        public: false
-      }
-    })
-  } catch (error) {
-    dbError = error
+  if (!error) {
+    try {
+      await prisma.user.create({
+        data: {
+          email: email,
+          username: username,
+          public: false
+        }
+      })
+    } catch (error) {
+      dbError = error
+    }
   }
 
   if (error || dbError) {
