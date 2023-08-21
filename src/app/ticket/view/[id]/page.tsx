@@ -45,13 +45,13 @@ export default async function Page({ params }: { params: { id: string }}) {
     return (
         <>
             <div className="container my-8 max-w-xl ">
-                <h1 className="text-3xl font-semibold mb-8">{query[0].relatedTicket.title}</h1>
+                <h1 className="text-3xl font-semibold mb-8">Ticket: '{query[0].relatedTicket.title}'</h1>
 
                 {
                     query.map(item => {
                         const timeHour = item.createdAt.getHours()
                         const rawMinute = item.createdAt.getMinutes()
-                        const timeMinute = (rawMinute > 10) ? rawMinute : `0${rawMinute}`
+                        const timeMinute = (rawMinute >= 10) ? rawMinute : `0${rawMinute}`
                         const author = (item.author.username == userData!.username) ? "You" : item.author.username
                         const cardColor = (item.author.username != userData!.username) ? "bg-zinc-100" : ""
 
@@ -61,7 +61,7 @@ export default async function Page({ params }: { params: { id: string }}) {
                                     <CardTitle>{author}</CardTitle>
                                     <CardDescription>{`${timeHour}:${timeMinute}`}</CardDescription>
                                 </CardHeader>
-                                <CardContent>
+                                <CardContent className="break-words">
                                     <p>{item.text}</p>
                                 </CardContent>
                                 {/*<CardFooter>*/}
