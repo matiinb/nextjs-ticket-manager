@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     description: 'A Web Application created using NextJS',
 }
 
-export default async function TicketCreatorLayout({
+export default async function TicketLayout({
     children,
 }: {
     children: React.ReactNode

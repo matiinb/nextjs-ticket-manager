@@ -4,16 +4,14 @@ import {SyntheticEvent, useEffect, useRef, useState} from "react";
 import {useSearchParams} from "next/navigation";
 import AlertMessage from "@/components/alert-message";
 import {CheckCircledIcon, ExclamationTriangleIcon} from "@radix-ui/react-icons";
-import {Input} from "@/components/ui/input";
 import {Textarea} from "@/components/ui/textarea";
 import {Button} from "@/components/ui/button";
 import Link from "next/link";
 
-export function ProfileForm({ destUsername }: { destUsername: string }) {
+export default function ReplyForm({ ticketID, ticketTitle }: { ticketID: string, ticketTitle: string }) {
     const [error, setError] = useState('')
     const [message, setMessage] = useState('')
     const [isLoading, setIsLoading] = useState(false)
-    const titleRef = useRef<HTMLInputElement>(null)
     const textRef = useRef<HTMLTextAreaElement>(null)
 
     const searchParams = useSearchParams()
@@ -22,13 +20,13 @@ export function ProfileForm({ destUsername }: { destUsername: string }) {
         const paramsStatus = searchParams.get('status') || ''
 
         if (paramsError !== '') setError(paramsError)
-        if (paramsStatus === 'success') setMessage('Successfully created a ticket')
+        if (paramsStatus === 'success') setMessage('Successfully added a reply')
     }, [])
 
     function handleSubmit(e: SyntheticEvent) {
-        if (titleRef.current!.value.length < 5 || textRef.current!.value.length < 10) {
+        if (textRef.current!.value.length < 2) {
             e.preventDefault()
-            setError('The title should be 5 and the text should be 10 letters at least')
+            setError('The reply should be at least 2 characters')
         }
 
         setIsLoading(true)
@@ -37,7 +35,7 @@ export function ProfileForm({ destUsername }: { destUsername: string }) {
     return (
         <>
             <h1 className="text-3xl mb-4 font-bold tracking-tight">
-                Send a ticket to {destUsername}
+                Add a reply to '{ticketTitle}'
             </h1>
 
             {error && (
@@ -51,29 +49,21 @@ export function ProfileForm({ destUsername }: { destUsername: string }) {
                     title="Success" message={message}/>
             )}
 
-            <form action="/api/create-ticket" method="post" onSubmit={handleSubmit} className="space-y-6">
-                <input type="hidden" name="destUsername" value={destUsername}/>
+            <form action="/api/create-reply" method="post" onSubmit={handleSubmit} className="space-y-6">
+                <input type="hidden" name="ticketID" value={ticketID}/>
 
                 <div>
-                    <span className="text-sm font-semibold">Ticket Title</span>
-                    <Input
-                        name="title"
-                        ref={titleRef}
-                        placeholder="e.g. Application bug report"
-                    />
-                </div>
-                <div>
-                    <span className="text-sm font-semibold">Ticket Text</span>
+                    <span className="text-sm font-semibold">Reply Text</span>
                     <Textarea
                         name="text"
                         ref={textRef}
                         className="h-40"
-                        placeholder="e.g. Hello, I recently found a bug in your application..."
+                        placeholder="e.g. Thanks for the quick response!"
                     />
                 </div>
                 <Button type="submit" disabled={isLoading}>Submit</Button>
 
-                <Link href={"/dashboard"}>
+                <Link href={`/ticket/view/${ticketID}`}>
                     <Button variant="destructive" className="ml-4">Cancel</Button>
                 </Link>
             </form>
