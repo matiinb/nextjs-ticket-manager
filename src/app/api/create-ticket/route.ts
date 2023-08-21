@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { prisma } from "@/db"
 import AuthUser from "@/app/auth/auth-user"
+import { nanoid } from "nanoid"
 
 export const dynamic = 'force-dynamic'
 
@@ -26,6 +27,7 @@ export async function POST(request: Request) {
     try {
         await prisma.ticket.create({
             data: {
+                id: nanoid(12),
                 title: title,
                 author: {
                     connect: {username: userData.username}

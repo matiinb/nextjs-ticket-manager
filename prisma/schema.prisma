@@ -16,13 +16,23 @@ model User {
   username        String   @unique
   public          Boolean  @default(false)
   createdAt       DateTime @default(now())
+  profile         Profile?
   authoredTickets Ticket[] @relation("AuthoredTickets")
   receivedTickets Ticket[] @relation("ReceivedTickets")
   authoredReplies Reply[]  @relation("AuthoredReplies")
 }
 
+model Profile {
+  id         String  @id @default(uuid())
+  user       User    @relation(fields: [userId], references: [id])
+  userId     String  @unique
+  firstName  String
+  lastName   String
+  websiteURL String?
+}
+
 model Ticket {
-  id          String   @id @default(uuid())
+  id          String   @id @default(cuid())
   author      User     @relation("AuthoredTickets", fields: [authorId], references: [id], onDelete: Cascade)
   authorId    String
   recipient   User     @relation("ReceivedTickets", fields: [recipientId], references: [id], onDelete: Cascade)

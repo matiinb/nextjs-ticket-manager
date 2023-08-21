@@ -1,4 +1,4 @@
-import {ProfileForm} from "@/app/users/[username]/create-ticket/new-ticket-form";
+import {ProfileForm} from "@/app/user/[username]/create-ticket/new-ticket-form";
 
 export default function Page({ params }: { params: { username: string }}) {
     return (
