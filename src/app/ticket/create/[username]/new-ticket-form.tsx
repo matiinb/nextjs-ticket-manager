@@ -35,6 +35,10 @@ export function ProfileForm({ destUsername }: { destUsername: string }) {
 
     return (
         <>
+            <h1 className="text-3xl mb-4 font-bold tracking-tight">
+                Send a ticket to {destUsername}
+            </h1>
+
             {error && (
                 <AlertMessage
                     icon={<ExclamationTriangleIcon className="w-10 h-10" />}

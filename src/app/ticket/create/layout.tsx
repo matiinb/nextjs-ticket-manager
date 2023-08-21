@@ -19,11 +19,11 @@ export default async function DashboardLayout({
     !userData && redirect('/login')
 
     return (
-        <>
+        <div className="h-auto min-h-full flex flex-col">
             <Header username={userData!.username} email={userData!.email}/>
-            <div className="container mt-8">
+            <div className="flex-1 flex">
                 {children}
             </div>
-        </>
+        </div>
     )
 }
