@@ -58,7 +58,7 @@ export function ProfileForm({ destUsername }: { destUsername: string }) {
                     <Input
                         name="title"
                         ref={titleRef}
-                        placeholder="Service cancellation request"
+                        placeholder="e.g. Application bug report"
                     />
                 </div>
                 <div>
@@ -67,7 +67,7 @@ export function ProfileForm({ destUsername }: { destUsername: string }) {
                         name="text"
                         ref={textRef}
                         className="h-40"
-                        placeholder="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, fugiat repellat! Cum distinctio rerum ullam!"
+                        placeholder="e.g. Hello, I recently found a bug in your application..."
                     />
                 </div>
                 <Button type="submit" disabled={isLoading}>Submit</Button>

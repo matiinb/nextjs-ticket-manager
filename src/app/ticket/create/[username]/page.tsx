@@ -1,6 +1,16 @@
 import {ProfileForm} from "@/app/ticket/create/[username]/new-ticket-form";
+import { prisma } from "@/db";
+import ErrorPage from "@/components/error-page";
 
-export default function Page({ params }: { params: { username: string }}) {
+export default async function Page({ params }: { params: { username: string }}) {
+    const query = await prisma.user.count({
+        where: { username: params.username, public: true }
+    })
+
+    if (query === 0) {
+        return <ErrorPage className="flex-1" error="User either doesnt exist or isnt public"/>
+    }
+
     return (
         <>
             <div className="relative flex flex-col flex-1 justify-center lg:flex-row-reverse">
