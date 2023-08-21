@@ -16,7 +16,7 @@ export default function Searchbar() {
                 if (!searchText) return
 
                 setIsLoading(true)
-                return push(`/users/${searchText}`)
+                return push(`/user/${searchText}`)
             }
         }
         searchRef.current!.addEventListener('keydown', listener)
