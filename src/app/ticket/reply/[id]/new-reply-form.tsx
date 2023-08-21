@@ -26,7 +26,7 @@ export default function ReplyForm({ ticketID, ticketTitle }: { ticketID: string,
     function handleSubmit(e: SyntheticEvent) {
         if (textRef.current!.value.length < 2) {
             e.preventDefault()
-            setError('The reply should be at least 2 characters')
+            return setError('The reply should be at least 2 characters')
         }
 
         setIsLoading(true)

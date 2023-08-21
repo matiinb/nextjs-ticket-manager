@@ -28,7 +28,7 @@ export function ProfileForm({ destUsername }: { destUsername: string }) {
     function handleSubmit(e: SyntheticEvent) {
         if (titleRef.current!.value.length < 5 || textRef.current!.value.length < 10) {
             e.preventDefault()
-            setError('The title should be 5 and the text should be 10 letters at least')
+            return setError('The title should be 5 and the text should be 10 letters at least')
         }
 
         setIsLoading(true)

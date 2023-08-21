@@ -8,6 +8,8 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
+import { Pencil2Icon } from "@radix-ui/react-icons";
+import LinkButton from "@/components/link-button";
 
 export default async function Page({ params }: { params: { id: string }}) {
     const { userData } = await AuthUser()
@@ -32,7 +34,8 @@ export default async function Page({ params }: { params: { id: string }}) {
                 recipient: { public: true }
             }
         },
-        include: { author: true, relatedTicket: true }
+        include: { author: true, relatedTicket: true },
+        orderBy: { createdAt: 'asc' }
     })
 
     if (!query || query.length === 0) {
@@ -41,19 +44,21 @@ export default async function Page({ params }: { params: { id: string }}) {
 
     return (
         <>
-            <div className="container mt-8">
-                <h1 className="text-3xl mb-8">{query[0].relatedTicket.title}</h1>
+            <div className="container my-8 max-w-xl ">
+                <h1 className="text-3xl font-semibold mb-8">{query[0].relatedTicket.title}</h1>
 
                 {
                     query.map(item => {
                         const timeHour = item.createdAt.getHours()
                         const rawMinute = item.createdAt.getMinutes()
                         const timeMinute = (rawMinute > 10) ? rawMinute : `0${rawMinute}`
+                        const author = (item.author.username == userData!.username) ? "You" : item.author.username
+                        const cardColor = (item.author.username != userData!.username) ? "bg-zinc-100" : ""
 
                         return (
-                            <Card className="max-w-sm mb-4">
+                            <Card className={`mb-4 ${cardColor}`}>
                                 <CardHeader>
-                                    <CardTitle>{item.author.username}</CardTitle>
+                                    <CardTitle>{author}</CardTitle>
                                     <CardDescription>{`${timeHour}:${timeMinute}`}</CardDescription>
                                 </CardHeader>
                                 <CardContent>
@@ -67,6 +72,14 @@ export default async function Page({ params }: { params: { id: string }}) {
                     })
                 }
 
+                <LinkButton
+                    href={`/ticket/reply/${params.id}`}
+                    className="w-full h-12"
+                    variant="default"
+                >
+                    <Pencil2Icon className="w-4 h-4 mr-2"/>
+                    Add a reply
+                </LinkButton>
             </div>
         </>
     )
