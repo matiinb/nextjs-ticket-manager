@@ -1,47 +1,103 @@
 'use client'
 
 import Link from "next/link"
-import { cn } from "@/lib/utils"
+// import { cn } from "@/lib/utils"
+import {
+    NavigationMenu,
+    NavigationMenuContent,
+    NavigationMenuItem,
+    NavigationMenuLink,
+    NavigationMenuList,
+    NavigationMenuTrigger,
+    navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu"
 
 interface IntrinsicElements extends React.HTMLAttributes<HTMLElement> {
     linkClassName?: string
 }
 
 export default function HeaderMenu({
-    className, linkClassName
+    className
 }: IntrinsicElements) {
 
-    const defaultClass = cn("font-regular transition-colors hover:text-primary", linkClassName)
+    // const defaultClass = cn("font-regular transition-colors hover:text-primary", linkClassName)
+    const menuItems = [
+        {
+            text: "Home",
+            link: "/"
+        },
+        {
+            text: "Dashboard",
+            link: "/dashboard"
+        },
+        {
+            text: "Tickets",
+            link: "/tickets",
+            submenu: [
+                {
+                    text: "Submenu 1",
+                    link: "#"
+                },
+                {
+                    text: "Submenu 1",
+                    link: "#"
+                },
+                {
+                    text: "Submenu 1",
+                    link: "#"
+                }
+            ]
+        },
+        {
+            text: "Settings",
+            link: "/settings"
+        },
+    ]
 
     return (
-        <nav className={className}>
-            <Link
-                href={"/"}
-                className={defaultClass + " text-muted-foreground"}
-            >
-                Home
-            </Link>
+        <NavigationMenu className={className}>
+            <NavigationMenuList className="flex-col sm:flex-row">
+                {menuItems.map((item, index) => {
+                    if (!item.submenu) return (
+                        <NavigationMenuItem className="max-sm:w-full max-sm:!ml-0 max-sm:mb-2" key={index}>
+                            <Link href={item.link} legacyBehavior passHref>
+                                <NavigationMenuLink className={"max-sm:!text-lg max-sm:!h-10 max-sm:font-light " + navigationMenuTriggerStyle()}>
+                                    {item.text}
+                                </NavigationMenuLink>
+                            </Link>
+                        </NavigationMenuItem>
+                    )
 
-            <Link
-                href={"/dashboard"}
-                className={defaultClass}
-            >
-                Dashboard
-            </Link>
-
-            <Link
-                href={"/settings"}
-                className={defaultClass + " text-muted-foreground"}
-            >
-                Settings
-            </Link>
-
-            <Link
-                href={"/tickets"}
-                className={defaultClass + " text-muted-foreground"}
-            >
-                Tickets
-            </Link>
-        </nav>
+                    return (
+                        <NavigationMenuItem className="max-sm:w-full max-sm:!ml-0 max-sm:mb-2" key={index}>
+                            <NavigationMenuTrigger className="max-sm:!text-lg max-sm:!h-10 max-sm:font-light">Components</NavigationMenuTrigger>
+                            <NavigationMenuContent>
+                                <ul className="flex flex-col gap-3 w-[200px] p-4">
+                                    {
+                                        item.submenu.map((item, index) => {
+                                            return (
+                                                <NavigationMenuItem key={index}>
+                                                    <Link href={item.link} legacyBehavior passHref>
+                                                        <NavigationMenuLink className={"!w-full !justify-start " + navigationMenuTriggerStyle()}>
+                                                            {item.text}
+                                                        </NavigationMenuLink>
+                                                    </Link>
+                                                </NavigationMenuItem>
+                                            )
+                                        })
+                                    }
+                                </ul>
+                            </NavigationMenuContent>
+                        </NavigationMenuItem>
+                    )
+                })}
+            </NavigationMenuList>
+            {/*<Link*/}
+            {/*    href={"/"}*/}
+            {/*    className={defaultClass + " text-muted-foreground"}*/}
+            {/*>*/}
+            {/*    Home*/}
+            {/*</Link>*/}
+        </NavigationMenu>
     )
 }

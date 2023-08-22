@@ -8,7 +8,7 @@ import Searchbar from "@/components/header-searchbar";
 export default function Header({ username, email }: { username: string, email: string }) {
     return (
         <div className="border-b">
-            <div className="flex h-16 items-center px-8">
+            <div className="flex h-16 items-center px-8 md:container">
                 <div>
                     <div className="hidden sm:block">
                         <HeaderMenu className="flex space-x-6"/>
@@ -18,8 +18,8 @@ export default function Header({ username, email }: { username: string, email: s
                     </div>
                 </div>
 
-                <div className="ml-auto flex items-center space-x-4 pl-4">
-                    <Searchbar/>
+                <div className="flex-1 md:justify-end flex items-center space-x-4 pl-4">
+                    <Searchbar className="w-full md:w-auto"/>
                     <HeaderUser username={username} email={email}/>
                 </div>
             </div>

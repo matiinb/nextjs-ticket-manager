@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input"
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from 'next/navigation';
 
-export default function Searchbar() {
+export default function Searchbar({ className }: { className: string }) {
     const searchRef = useRef<HTMLInputElement>(null)
     const { push } = useRouter()
     const [isLoading, setIsLoading] = useState(false)
@@ -23,6 +23,6 @@ export default function Searchbar() {
     }, [])
 
     return (
-        <Input ref={searchRef} disabled={isLoading} placeholder="Enter a username"/>
+        <Input className={className} ref={searchRef} disabled={isLoading} placeholder="Enter a username"/>
     )
 }
