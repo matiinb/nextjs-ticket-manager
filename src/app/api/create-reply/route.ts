@@ -27,7 +27,7 @@ export async function POST(request: Request) {
             data: {
                 text: text,
                 author: { connect: { email: userData.email } },
-                relatedTicket: { connect: { id: ticketID } }
+                relatedTicket: { connect: { id: ticketID, isClosed: false } }
             }
         })
 

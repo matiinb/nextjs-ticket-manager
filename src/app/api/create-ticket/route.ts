@@ -39,7 +39,7 @@ export async function POST(request: Request) {
                     create: {
                         text: text,
                         author: {
-                            connect: {username: userData.username}
+                            connect: {username: userData.username, public: true}
                         }
                     }
                 }
