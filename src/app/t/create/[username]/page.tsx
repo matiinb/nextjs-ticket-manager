@@ -1,4 +1,4 @@
-import {ProfileForm} from "@/app/ticket/create/[username]/new-ticket-form";
+import {ProfileForm} from "@/app/t/create/[username]/new-ticket-form";
 import { prisma } from "@/db";
 import ErrorPage from "@/components/error-page";
 import AuthUser from "@/app/auth/auth-user";

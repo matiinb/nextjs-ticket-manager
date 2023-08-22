@@ -13,7 +13,7 @@ export async function POST(request: Request) {
 
     if (text.length < 2 || ticketID == '') {
         return NextResponse.redirect(
-            `${requestUrl.origin}/ticket/reply/${ticketID}?error=Invalid input values`,
+            `${requestUrl.origin}/t/reply/${ticketID}?error=Invalid input values`,
             { status: 301 }
         )
     }
@@ -32,12 +32,12 @@ export async function POST(request: Request) {
         })
 
         return NextResponse.redirect(
-            `${requestUrl.origin}/ticket/view/${ticketID}`,
+            `${requestUrl.origin}/t/view/${ticketID}`,
             { status: 301 }
         )
     } catch (error) {
         return NextResponse.redirect(
-            `${requestUrl.origin}/ticket/reply/${ticketID}?error=${error}`,
+            `${requestUrl.origin}/t/reply/${ticketID}?error=${error}`,
             { status: 301 }
         )
     }
