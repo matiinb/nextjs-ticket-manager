@@ -8,7 +8,6 @@ export async function POST(request: Request) {
     const requestUrl = new URL(request.url)
     const formData = await request.formData()
     const ticketID = String(formData.get('ticketID'))
-    const redirectPath = String(formData.get('redirectPath'))
     const { userData } = await AuthUser()
 
     if (ticketID == '') {
@@ -20,26 +19,25 @@ export async function POST(request: Request) {
     }
 
     try {
-        await prisma.ticket.delete({
+        await prisma.ticket.update({
+            data: { isClosed: true },
             where: {
                 id: ticketID,
-                OR: [
-                    {author: { email: userData!.email }},
+                isClosed: false,
 
-                    // {public: true} makes it so that only public users that can manage
-                    // tickets be able to delete tickets related to them.
-                    {recipient: { email: userData!.email, public: true }}
-                ]
+                // Only allow the user to close the ticket if they are the
+                // one receiving the ticket (managing the ticket)
+                recipient: { email: userData!.email, public: true }
             }
         })
 
         return NextResponse.redirect(
-            `${requestUrl.origin}${redirectPath}`,
+            `${requestUrl.origin}/tickets/manage`,
             { status: 301 }
         )
     } catch (error: any) {
         return NextResponse.json(
-            {error: 'ERROR_FAILED_TO_DELETE'},
+            {error: 'ERROR_FAILED_TO_UPDATE'},
             {status: 401}
         )
     }
