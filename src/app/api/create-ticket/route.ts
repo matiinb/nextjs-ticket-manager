@@ -47,7 +47,7 @@ export async function POST(request: Request) {
         })
 
         return NextResponse.redirect(
-            `${requestUrl.origin}/t/create/${destUsername}?status=success`,
+            `${requestUrl.origin}/t/view/${destUsername}`,
             { status: 301 }
         )
     } catch (error) {

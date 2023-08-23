@@ -18,18 +18,23 @@ async function getData(): Promise<any> {
             author: { select: { username: true } },
             title: true,
             updatedAt: true,
-            isClosed: true
+            isClosed: true,
+            replies: { select: { createdAt: true }, orderBy: [{ createdAt: 'desc' }] }
         },
-        orderBy: [
-            {
-                updatedAt: 'desc'
-            }
-        ]
+        orderBy: [{
+            updatedAt: 'desc'
+        }]
     });
 
-    return data.map(item => {
-        const date = item.updatedAt.toDateString()
-        const time = item.updatedAt.toTimeString().slice(0, 8)
+    // Sort the tickets based on the date of their latest corresponding reply
+    const sortedData = data.sort((a: any, b: any) => {
+        return (b.replies[0].createdAt - a.replies[0].createdAt)
+    })
+
+    return sortedData.map(item => {
+        const updatedAt = item.replies[0].createdAt
+        const date = updatedAt.toDateString()
+        const time = updatedAt.toTimeString().slice(0, 8)
 
         return {
             id: item.id,
