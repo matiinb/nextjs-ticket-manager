@@ -73,7 +73,7 @@ export default async function Page({ params }: { params: { id: string }}) {
                 }
 
                 <LinkButton
-                    href={`/ticket/reply/${params.id}`}
+                    href={`/t/reply/${params.id}`}
                     className="w-full h-12"
                     variant="default"
                 >

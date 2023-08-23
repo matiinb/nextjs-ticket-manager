@@ -1,5 +1,5 @@
 import { columns } from "./columns"
-import { DataTable } from "./data-table"
+import { DataTable } from "@/components/data-table"
 import { prisma } from "@/db"
 import AuthUser from "@/app/auth/auth-user"
 import ErrorPage from "@/components/error-page";
@@ -19,7 +19,12 @@ async function getData(): Promise<any> {
             title: true,
             updatedAt: true,
             isClosed: true
-        }
+        },
+        orderBy: [
+            {
+                updatedAt: 'desc'
+            }
+        ]
     });
 
     return data.map(item => {
@@ -41,8 +46,11 @@ export default async function TicketManager() {
 
     if (data) {
         return (
-            <div className="container mx-auto py-10">
-                <DataTable columns={columns} data={data}/>
+            <div className="sm:container">
+                <h1 className="text-3xl font-semibold">Tickets</h1>
+                <div className="mx-auto py-10">
+                    <DataTable columns={columns} data={data}/>
+                </div>
             </div>
         )
     } else {
