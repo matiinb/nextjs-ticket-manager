@@ -70,8 +70,9 @@ export const columns: ColumnDef<Ticket>[] = [
                         </Link>
 
                         <DropdownMenuSeparator />
-                        <form action="/api/delete-ticket">
+                        <form action="/api/delete-ticket" method="post">
                             <input name="ticketID" type="hidden" value={ticket.id}/>
+                            <input name="redirectPath" type="hidden" value="/tickets/list"/>
                             <DropdownMenuItem>
                                 <button type="submit" className="text-red-600 flex items-center w-full">
                                     <TrashIcon className="h-4 w-4 mr-2"/>

@@ -25,7 +25,7 @@ export async function POST(request: Request) {
     }
 
     try {
-        await prisma.ticket.create({
+        const query = await prisma.ticket.create({
             data: {
                 id: nanoid(12),
                 title: title,
@@ -43,11 +43,14 @@ export async function POST(request: Request) {
                         }
                     }
                 }
+            },
+            select: {
+                id: true
             }
         })
 
         return NextResponse.redirect(
-            `${requestUrl.origin}/t/view/${destUsername}`,
+            `${requestUrl.origin}/t/view/${query.id}`,
             { status: 301 }
         )
     } catch (error) {
