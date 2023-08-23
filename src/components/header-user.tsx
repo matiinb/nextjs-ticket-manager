@@ -49,10 +49,10 @@ export default function HeaderUser({ username, email }: { username: string, emai
                     </Link>
                     <Link href={"/profile"}>
                         <DropdownMenuItem>
-                            Profile
+                            Settings
                         </DropdownMenuItem>
                     </Link>
-                    <Link href={"/tickets"}>
+                    <Link href={"/tickets/list"}>
                         <DropdownMenuItem>
                             Tickets
                         </DropdownMenuItem>

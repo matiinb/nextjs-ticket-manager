@@ -23,29 +23,20 @@ export default function HeaderMenu({
     // const defaultClass = cn("font-regular transition-colors hover:text-primary", linkClassName)
     const menuItems = [
         {
-            text: "Home",
-            link: "/"
-        },
-        {
             text: "Dashboard",
             link: "/dashboard"
         },
         {
             text: "Tickets",
-            link: "/tickets",
             submenu: [
                 {
-                    text: "Submenu 1",
-                    link: "#"
+                    text: "Ticket Manager",
+                    link: "/tickets/manage"
                 },
                 {
-                    text: "Submenu 1",
-                    link: "#"
+                    text: "Ticket List",
+                    link: "/tickets/list"
                 },
-                {
-                    text: "Submenu 1",
-                    link: "#"
-                }
             ]
         },
         {
@@ -70,7 +61,7 @@ export default function HeaderMenu({
 
                     return (
                         <NavigationMenuItem className="max-sm:w-full max-sm:!ml-0 max-sm:mb-2" key={index}>
-                            <NavigationMenuTrigger className="max-sm:!text-lg max-sm:!h-10 max-sm:font-light">Components</NavigationMenuTrigger>
+                            <NavigationMenuTrigger className="max-sm:!text-lg max-sm:!h-10 max-sm:font-light">{item.text}</NavigationMenuTrigger>
                             <NavigationMenuContent>
                                 <ul className="flex flex-col gap-3 w-[200px] p-4">
                                     {
