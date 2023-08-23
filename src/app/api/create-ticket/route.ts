@@ -33,13 +33,13 @@ export async function POST(request: Request) {
                     connect: {username: userData.username}
                 },
                 recipient: {
-                    connect: {username: destUsername}
+                    connect: {username: destUsername, public: true}
                 },
                 replies: {
                     create: {
                         text: text,
                         author: {
-                            connect: {username: userData.username, public: true}
+                            connect: {username: userData.username}
                         }
                     }
                 }
