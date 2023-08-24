@@ -11,6 +11,11 @@ export default async function AuthUser() {
         userData = await prisma.user.findUnique({
             where: {
                 email: user?.email
+            },
+
+            // Also include profile info such as Name and Website
+            include: {
+                profile: true
             }
         })
     }

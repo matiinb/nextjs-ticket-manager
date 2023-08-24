@@ -43,7 +43,8 @@ export async function POST(request: Request) {
         data: {
           email: email,
           username: username,
-          public: false
+          public: false,
+          profile: { create: { firstName: username, lastName: '' } }
         }
       })
     } catch (error) {
@@ -67,7 +68,7 @@ export async function POST(request: Request) {
   }
 
   return NextResponse.redirect(
-    `${requestUrl.origin}/dashboard`,
+    `${requestUrl.origin}/signup/profile-info`,
     {
       // a 301 status is required to redirect from a POST to a GET route
       status: 301,
