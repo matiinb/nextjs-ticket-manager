@@ -45,6 +45,7 @@ export default function ProfileInfoForm() {
                 ) : null }
 
                 <form action="/api/update-profile" method="post" onSubmit={handleSubmit}>
+                    <input name="redirectPath" type="hidden" value="/dashboard"/>
                     <div className="grid gap-3">
                         <div>
                             <label htmlFor="firstName" className="text-sm font-semibold leading-none">First Name</label>
