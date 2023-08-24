@@ -2,9 +2,9 @@
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import {ReactNode} from "react";
 
-export default function AlertMessage({ icon, title, message }: { icon: ReactNode, title: string, message: string}) {
+export default function AlertMessage({ icon, title, message, className }: { icon: ReactNode, title: string, message: string, className?: string}) {
     return (
-        <Alert className="flex flex-row gap-4 items-center">
+        <Alert className={`flex flex-row gap-4 items-center ` + className}>
             <div>
                 { icon }
             </div>

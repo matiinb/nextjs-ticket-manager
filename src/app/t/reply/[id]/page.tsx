@@ -17,12 +17,15 @@ export default async function Page({ params }: { params: { id: string }}) {
                     recipient: { email: userData!.email }
                 }
             ],
-            recipient: { public: true }
+            recipient: { public: true },
+            isClosed: false
         }
     })
 
     if (!query) {
-        return <ErrorPage className="flex-1" error="Either the ticket doesnt exist or you don't have access to it"/>
+        return <ErrorPage
+            className="flex-1"
+            error="Either the ticket is unavailable or has been closed"/>
     }
 
     return (

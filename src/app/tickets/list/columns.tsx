@@ -18,7 +18,7 @@ export type Ticket = {
     recipient: string
     title: string
     lastUpdate: string
-    status: 'pending' | 'closed'
+    status: 'Pending' | 'Closed'
 }
 
 export const columns: ColumnDef<Ticket>[] = [
@@ -62,12 +62,13 @@ export const columns: ColumnDef<Ticket>[] = [
                             </DropdownMenuItem>
                         </Link>
 
-                        <Link href={`/t/reply/${ticket.id}`}>
-                            <DropdownMenuItem>
-                                <ResetIcon className="h-4 w-4 mr-2"/>
-                                Reply
-                            </DropdownMenuItem>
-                        </Link>
+                        {(ticket.status == 'Pending') && (
+                            <Link href={`/t/reply/${ticket.id}`}>
+                                <DropdownMenuItem>
+                                    <ResetIcon className="h-4 w-4 mr-2"/>
+                                    Reply
+                                </DropdownMenuItem>
+                            </Link> )}
 
                         <DropdownMenuSeparator />
                         <form action="/api/delete-ticket" method="post">

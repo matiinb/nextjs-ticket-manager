@@ -52,7 +52,7 @@ export default async function TicketManager() {
     if (data) {
         return (
             <div className="sm:container">
-                <h1 className="text-3xl font-semibold">Tickets</h1>
+                <h1 className="text-3xl font-semibold">Tickets Manager</h1>
                 <div className="mx-auto py-10">
                     <DataTable columns={columns} data={data}/>
                 </div>
