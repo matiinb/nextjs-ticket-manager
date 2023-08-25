@@ -44,7 +44,7 @@ export default function ProfileInfoForm() {
                     <AlertMessage icon={<ExclamationTriangleIcon className="w-10 h-10" />} title="Error" message={error}/>
                 ) : null }
 
-                <form action="/api/update-profile" method="post" onSubmit={handleSubmit}>
+                <form action="/api/update-account" method="post" onSubmit={handleSubmit}>
                     <input name="redirectPath" type="hidden" value="/dashboard"/>
                     <div className="grid gap-3">
                         <div>

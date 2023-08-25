@@ -29,7 +29,7 @@ export default function TicketManagerStats({ ticketsCount } : { ticketsCount: nu
             <CardHeader className="space-y-1">
                 <CardTitle className="text-2xl">Ticket Manager Stats</CardTitle>
                 <CardDescription>
-                    You can see the number of tickets you've received here
+                    {"You can see the number of tickets you've received here"}
                 </CardDescription>
             </CardHeader>
             <CardContent>

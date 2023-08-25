@@ -29,7 +29,7 @@ export default function TicketListStats({ ticketsCount } : { ticketsCount: numbe
             <CardHeader className="space-y-1">
                 <CardTitle className="text-2xl">Ticket List Stats</CardTitle>
                 <CardDescription>
-                    You can see the number of tickets you've sent here
+                    {"You can see the number of tickets you've sent here"}
                 </CardDescription>
             </CardHeader>
             <CardContent>
