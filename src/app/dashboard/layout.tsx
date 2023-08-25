@@ -22,7 +22,6 @@ export default async function DashboardLayout({
         <>
             <Header username={userData!.username} email={userData!.email}/>
             <div className="container mt-8">
-                <h1 className="text-3xl font-bold tracking-tight">Howdy, {userData!.username}!</h1>
                 {children}
             </div>
         </>
