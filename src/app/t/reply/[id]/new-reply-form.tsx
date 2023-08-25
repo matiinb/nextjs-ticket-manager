@@ -35,7 +35,7 @@ export default function ReplyForm({ ticketID, ticketTitle }: { ticketID: string,
     return (
         <>
             <h1 className="text-3xl mb-4 font-bold tracking-tight">
-                Add a reply to '{ticketTitle}'
+                {`Add a reply to '${ticketTitle}'`}
             </h1>
 
             {error && (
