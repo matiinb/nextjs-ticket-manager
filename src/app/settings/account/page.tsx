@@ -1,7 +1,10 @@
 import { Separator } from "@/components/ui/separator"
 import AccountSettingsForm from "./account-settings-form"
+import AuthUser from "@/app/auth/auth-user"
 
-export default function AccountSettings() {
+export default async function AccountSettings() {
+    const { userData } = await AuthUser()
+
     return (
         <div className="space-y-6">
             <div>
@@ -11,7 +14,10 @@ export default function AccountSettings() {
                 </p>
             </div>
             <Separator />
-            <AccountSettingsForm/>
+            <AccountSettingsForm
+                username={userData!.username}
+                isPublic={userData!.public}
+            />
         </div>
     )
 }

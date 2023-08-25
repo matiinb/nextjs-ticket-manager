@@ -7,7 +7,7 @@ import { useState, useRef, SyntheticEvent, useEffect } from "react"
 import {useSearchParams} from "next/navigation";
 import AlertMessage from "@/components/alert-message";
 
-export default async function ProfileSettingsForm({fname, lname}: {fname: string, lname: string}) {
+export default function ProfileSettingsForm({fname, lname}: {fname: string, lname: string}) {
     const [isLoading, setIsLoading] = useState(false)
     const [message, setMessage] = useState('')
     const firstNameRef = useRef<HTMLInputElement>(null)
@@ -24,14 +24,13 @@ export default async function ProfileSettingsForm({fname, lname}: {fname: string
     }, [])
 
     function handleSubmit(e: SyntheticEvent) {
-
-        // Make sure the user isn't resending the same data again
+         // Make sure the user isn't resending the same data again
         if (firstNameRef.current!.value == ''
             || lastNameRef.current!.value == ''
             || (firstNameRef.current!.value == fname && lastNameRef.current!.value == lname)
         ) {
             e.preventDefault()
-            return setIsLoading(false)
+            // return setIsLoading(false)
         }
 
         setIsLoading(true)
@@ -39,17 +38,17 @@ export default async function ProfileSettingsForm({fname, lname}: {fname: string
 
     return (
         <>
-            {message && (
+            {searchParams.get('status') == 'success' && (
                 <AlertMessage
                     icon={<CheckCircledIcon className="w-10 h-10" />}
-                    title="Success" message={message}
+                    title="Success" message={"Successfully updated the profile"}
                     className="max-w-[400px]"
                 />
             )}
 
-            <form action="/api/update-profile" method="post" onSubmit={handleSubmit} className="space-y-6">
+            <form action="/api/update-account" method="post" onSubmit={handleSubmit} className="space-y-6">
                 <input name="redirectPath" type="hidden" value="/settings"/>
-                <div className="max-w-[400px]">
+                <div>
                     <label htmlFor="firstName" className="text-sm font-semibold leading-none">First Name</label>
                     <Input
                         name="firstName"
@@ -60,7 +59,7 @@ export default async function ProfileSettingsForm({fname, lname}: {fname: string
                     />
                 </div>
 
-                <div className="max-w-[400px]">
+                <div>
                     <label htmlFor="lastName" className="text-sm font-semibold leading-none">Last Name</label>
                     <Input
                         name="lastName"

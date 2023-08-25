@@ -8,12 +8,15 @@ export const dynamic = 'force-dynamic'
 
 export async function POST(request: Request) {
     const requestUrl = new URL(request.url)
-    const formData = await request.formData()
-    const firstName = String(formData.get('firstName'))
-    const lastName = String(formData.get('lastName'))
-    const isPublic = Boolean(formData.get('public')) || null
-    const redirectPath = String(formData.get('redirectPath'))
     const { userData } = await AuthUser()
+    const formData = await request.formData()
+
+    // If the submitted form doesn't contain one of the fields, then use the data from the user profile instead
+    const firstName = formData.get('firstName') == null ? userData!.profile!.firstName : String(formData.get('firstName'))
+    const lastName = formData.get('lastName') == null ? userData!.profile!.lastName : String(formData.get('lastName'))
+    const isPublic = formData.get('public') == null ? userData!.public : Boolean(formData.get('public'))
+
+    const redirectPath = String(formData.get('redirectPath'))
 
     if (firstName == '' || lastName == '') {
         return NextResponse.json({error: 'ERROR_NO_DATA'}, {status: 400})
@@ -24,24 +27,10 @@ export async function POST(request: Request) {
     }
 
     try {
-
-        // If the form includes the isPublic value then update it in DB
-        // otherwise just update the first and last name
-        (isPublic) ? await prisma.user.update({
+        await prisma.user.update({
             data: {
-                profile: { update: {
-                    firstName: firstName,
-                    lastName: lastName,
-                } },
+                profile: { update: { firstName: firstName, lastName: lastName } },
                 public: isPublic
-            },
-            where: { email: userData!.email }
-        }) : await prisma.user.update({
-            data: {
-                profile: { update: {
-                    firstName: firstName,
-                    lastName: lastName,
-                } },
             },
             where: { email: userData!.email }
         })
@@ -49,7 +38,7 @@ export async function POST(request: Request) {
         // If the redirect path is the Settings page then
         // set status to true so the page shows a message
         // about successful profile update
-        const params = (redirectPath == '/settings') && '?status=success'
+        const params = (redirectPath == '/settings' || redirectPath == '/settings/account') ? '?status=success' : ''
 
         return NextResponse.redirect(
             `${requestUrl.origin}${redirectPath}${params}`,
