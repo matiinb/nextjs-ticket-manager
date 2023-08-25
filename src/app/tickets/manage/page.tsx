@@ -41,14 +41,14 @@ async function getData(): Promise<any> {
 
     return sortedData.map(item => {
         const updatedAt = item.replies[0].createdAt
-        const date = updatedAt.toDateString()
-        const time = updatedAt.toTimeString().slice(0, 8)
+        // const date = updatedAt.toDateString()
+        // const time = updatedAt.toTimeString().slice(0, 8)
 
         return {
             id: item.id,
             author: item.author.username,
             title: item.title,
-            lastUpdate: `${date} at ${time}`,
+            lastUpdate: `${updatedAt.toUTCString()}`,
             status: (!item.isClosed) ? 'Pending' : 'Closed'
         }
     })

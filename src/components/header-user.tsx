@@ -47,7 +47,7 @@ export default function HeaderUser({ username, email }: { username: string, emai
                             Dashboard
                         </DropdownMenuItem>
                     </Link>
-                    <Link href={"/profile"}>
+                    <Link href={"/settings"}>
                         <DropdownMenuItem>
                             Settings
                         </DropdownMenuItem>

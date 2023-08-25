@@ -62,9 +62,9 @@ export default async function Page({ params }: { params: { id: string }}) {
                 <div>
                 {
                     query.map((item, index) => {
-                        const timeHour = item.createdAt.getHours()
-                        const rawMinute = item.createdAt.getMinutes()
-                        const timeMinute = (rawMinute >= 10) ? rawMinute : `0${rawMinute}`
+                        // const timeHour = item.createdAt.getHours()
+                        // const rawMinute = item.createdAt.getMinutes()
+                        // const timeMinute = (rawMinute >= 10) ? rawMinute : `0${rawMinute}`
                         const author = (item.author.username == userData!.username) ? "You" : item.author.username
                         const cardColor = (item.author.username != userData!.username) ? "bg-zinc-100" : ""
 
@@ -72,7 +72,7 @@ export default async function Page({ params }: { params: { id: string }}) {
                             <Card className={`mb-4 ${cardColor}`} key={index}>
                                 <CardHeader>
                                     <CardTitle>{author}</CardTitle>
-                                    <CardDescription>{`${timeHour}:${timeMinute}`}</CardDescription>
+                                    <CardDescription>{item.createdAt.toUTCString()}</CardDescription>
                                 </CardHeader>
                                 <CardContent className="break-words">
                                     <p>{item.text}</p>
