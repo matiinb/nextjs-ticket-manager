@@ -4,6 +4,8 @@ import AuthUser from "@/app/auth/auth-user"
 import { redirect } from "next/navigation"
 import ProfileInfoForm from "./profile-info-form";
 
+export const dynamic = 'force-dynamic'
+
 export default async function Signup() {
     const { userData } = await AuthUser()
     !userData && redirect('/login')

@@ -2,6 +2,8 @@ import { Separator } from "@/components/ui/separator"
 import ProfileSettingsForm from "./profile/profile-settings-form"
 import AuthUser from "@/app/auth/auth-user"
 
+export const dynamic = 'force-dynamic'
+
 export default async function ProfileSettings() {
     const { userData } = await AuthUser()
 

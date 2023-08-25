@@ -2,6 +2,14 @@ import ReplyForm from "./new-reply-form";
 import { prisma } from "@/db";
 import ErrorPage from "@/components/error-page";
 import AuthUser from "@/app/auth/auth-user";
+import {Metadata} from "next";
+
+export const dynamic = 'force-dynamic'
+
+export const metadata: Metadata = {
+    title: 'Reply - Ticket Manager',
+    description: 'A Web Application created using NextJS',
+}
 
 export default async function Page({ params }: { params: { id: string }}) {
     const { userData } = await AuthUser()

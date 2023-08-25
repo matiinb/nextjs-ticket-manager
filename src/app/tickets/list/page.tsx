@@ -3,6 +3,14 @@ import { DataTable } from "@/components/data-table"
 import { prisma } from "@/db"
 import AuthUser from "@/app/auth/auth-user"
 import ErrorPage from "@/components/error-page";
+import {Metadata} from "next";
+
+export const dynamic = 'force-dynamic'
+
+export const metadata: Metadata = {
+    title: 'Ticket List - Ticket Manager',
+    description: 'A Web Application created using NextJS',
+}
 
 async function getData(): Promise<any> {
     const { userData } = await AuthUser()

@@ -46,7 +46,7 @@ export default async function Page({ params }: { params: { id: string }}) {
     return (
         <>
             <div className="container my-8 max-w-xl ">
-                <h1 className="text-3xl font-semibold mb-8">Ticket: '{query[0].relatedTicket.title}'</h1>
+                <h1 className="text-3xl font-semibold mb-8">{`Ticket: '${query[0].relatedTicket.title}'`}</h1>
 
                 {
                     // If the ticket related to the first reply is closed,
@@ -61,7 +61,7 @@ export default async function Page({ params }: { params: { id: string }}) {
 
                 <div>
                 {
-                    query.map(item => {
+                    query.map((item, index) => {
                         const timeHour = item.createdAt.getHours()
                         const rawMinute = item.createdAt.getMinutes()
                         const timeMinute = (rawMinute >= 10) ? rawMinute : `0${rawMinute}`
@@ -69,7 +69,7 @@ export default async function Page({ params }: { params: { id: string }}) {
                         const cardColor = (item.author.username != userData!.username) ? "bg-zinc-100" : ""
 
                         return (
-                            <Card className={`mb-4 ${cardColor}`}>
+                            <Card className={`mb-4 ${cardColor}`} key={index}>
                                 <CardHeader>
                                     <CardTitle>{author}</CardTitle>
                                     <CardDescription>{`${timeHour}:${timeMinute}`}</CardDescription>

@@ -1,6 +1,7 @@
-// import {ExclamationTriangleIcon} from "@radix-ui/react-icons";
+'use client'
+
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import {ReactNode} from "react";
+import { ReactNode } from "react";
 
 export default function AlertMessage({ icon, title, message, className }: { icon: ReactNode, title: string, message: string, className?: string}) {
     return (

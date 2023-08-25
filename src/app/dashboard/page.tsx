@@ -6,6 +6,8 @@ import TicketListStats from "./cards/ticket-list-stats";
 import AuthUser from "@/app/auth/auth-user";
 import { prisma } from "@/db";
 
+export const dynamic = 'force-dynamic'
+
 function CardContainer({
     className,
     ...props

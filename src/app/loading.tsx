@@ -1,4 +1,4 @@
-import { SymbolIcon } from "@radix-ui/react-icons";
+'use client'
 
 export default function Loading() {
     return (

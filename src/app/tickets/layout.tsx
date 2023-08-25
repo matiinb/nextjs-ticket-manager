@@ -1,13 +1,9 @@
-import type { Metadata } from 'next'
 import React from "react";
 import Header from "@/components/header";
 import AuthUser from "@/app/auth/auth-user";
 import {redirect} from "next/navigation";
 
-export const metadata: Metadata = {
-    title: 'Dashboard - Ticket Manager',
-    description: 'A Web Application created using NextJS',
-}
+export const dynamic = 'force-dynamic'
 
 export default async function TicketsLayout({
     children,

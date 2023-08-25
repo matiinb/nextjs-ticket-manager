@@ -6,6 +6,8 @@ import Header from "@/components/header"
 import { redirect } from "next/navigation";
 import { SidebarNav } from "@/app/settings/sidebar-nav";
 
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
     title: "Settings - Ticket Manager",
     description: "A Web Application created using NextJS",

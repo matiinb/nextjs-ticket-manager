@@ -5,6 +5,8 @@ import { EnvelopeClosedIcon } from "@radix-ui/react-icons";
 import AuthUser from "@/app/auth/auth-user"
 import { redirect } from "next/navigation"
 
+export const dynamic = 'force-dynamic'
+
 export default async function Signup() {
     const { userData } = await AuthUser()
     userData && redirect('/dashboard')

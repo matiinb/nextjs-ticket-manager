@@ -4,8 +4,10 @@ import Header from "@/components/header";
 import AuthUser from "@/app/auth/auth-user";
 import {redirect} from "next/navigation";
 
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
-    title: 'Create Ticket - Ticket Manager',
+    title: 'View Ticket - Ticket Manager',
     description: 'A Web Application created using NextJS',
 }
 

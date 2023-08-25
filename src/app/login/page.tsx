@@ -4,6 +4,14 @@ import { EnvelopeClosedIcon } from "@radix-ui/react-icons";
 import AuthUser from "@/app/auth/auth-user"
 import { redirect } from "next/navigation"
 import LoginForm from "@/app/login/login-form";
+import { Metadata } from "next";
+
+export const dynamic = 'force-dynamic'
+
+export const metadata: Metadata = {
+    title: 'Login - Ticket Manager',
+    description: 'A Web Application created using NextJS',
+}
 
 export default async function Login() {
     const { userData } = await AuthUser()
